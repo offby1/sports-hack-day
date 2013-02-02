@@ -9,7 +9,7 @@ require 'rubygems'
 require 'twilio-ruby'
 
 begin
-require 'twilio-creds'          # a local file in this directory.
+  require 'twilio-creds'          # a local file in this directory.
 rescue LoadError => e
   puts "#{e} -- you need account credentials.  See the README."
   exit(1)
