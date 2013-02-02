@@ -28,12 +28,13 @@ require 'set'
 # call if the cache is older than ... I dunno ... a minute or so.
 def known_numbers
   numbers = {}
+
+  numbers[:me] = Set.new(@client.account.incoming_phone_numbers.list.map(&:phone_number))
+
   @client.account.sms.messages.list({}).each do |@message|
     if @message.direction == "inbound"
       numbers[:victims] ||= Set.new
       numbers[:victims] << @message.from
-      numbers[:me] ||= Set.new
-      numbers[:me] << @message.to
     end
   end
   return numbers
