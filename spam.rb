@@ -19,13 +19,13 @@ require 'pp'
 require 'set'
 
 @account_sid = ENV['TWILIO_ACCOUNT_SID']
-@auth_token =  ENV['TWILIO_AUTH_TOKEN']
+@auth_token  = ENV['TWILIO_AUTH_TOKEN']
 
 # set up a client to talk to the Twilio REST API
 @client = Twilio::REST::Client.new(@account_sid, @auth_token)
 
-# TODO -- sorta memoize this -- cache the result; only make the API
-# call if the cache is older than ... I dunno ... a minute or so.
+# Ask twilio for all the numbers we know about.  A real app would keep
+# this information locally.
 def known_numbers
   numbers = {}
 
