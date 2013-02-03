@@ -27,6 +27,9 @@ require 'set'
 
 # Ask twilio for all the numbers we know about.  A real app would keep
 # this information locally.
+
+# TODO -- for scalability and common sense: limit the messages to
+# (say) just those that were received yesterday.
 def known_numbers
   numbers = {}
 
