@@ -5,6 +5,7 @@
 # https://www.twilio.com/user/account/log/sms e.g., assuming of course
 # that you have a Twilio account :)
 
+require 'digest'
 require 'rubygems'
 require 'twilio-ruby'
 
@@ -54,11 +55,19 @@ def spam_everyone(message)
       :to   => victim,
       :body => message
     }
-    print "Sending #{params.inspect} ... "
-    puts @client.account.sms.messages.create(params)
+
+    # Limit to my phone number for testing.  The hash silliness is so
+    # that I don't put my phone number into revision control.
+
+    if Digest::MD5.hexdigest(victim) == "bc661b04abde2c331d5407c1b9747c24"
+      print "Sending #{params.inspect} ... "
+      puts @client.account.sms.messages.create(params)
+    else
+      puts "Not sending to #{victim}"
+    end
   end
 end
 
 if ARGV
-  spam_everyone(ARGV[0])
+  spam_everyone(ARGV.join(' '))
 end
