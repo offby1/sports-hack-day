@@ -1,0 +1,6 @@
+# Copy this file to "twilio-creds.rb", then replace the 'x's with your
+# actual Sid and Token.  You can get them from
+# https://www.twilio.com/user/account.
+
+ENV['TWILIO_ACCOUNT_SID']='xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+ENV['TWILIO_AUTH_TOKEN'] ='xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
